@@ -1,0 +1,129 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container m-2">
+      <form method="GET" id="escolhas_aluna">
+        <div
+          class="{% if mostrar_form == 'true' %} d-none {% else %}{% endif %}"
+          id="dia_segunda_aula"
+        >
+          <div class="control-group">
+            <label for="dia_semana_2" class="control-label">
+              Selecione o dia da segunda aula
+            </label>
+            <div class="controls">
+              <select name="dia_semana_2" class="select" id="dia_semana_2">
+                <option value="" selected="">---------</option>
+                <option value="segunda">Segunda</option>
+                <option value="terca">Terça</option>
+                <option value="quarta">Quarta</option>
+                <option value="quinta">Quinta</option>
+                <option value="sexta">Sexta</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-none" id="horario_segunda_aula">
+          <div class="control-group">
+            <label for="horario_2" class="control-label">
+              Selecione o horário da segunda aula
+            </label>
+            <div class="controls">
+              <select name="horario_2" class="select" id="horario_2">
+                <option value="" selected="">---------</option>
+                <option value="06:30">06:30 - 08:00</option>
+                <option value="08:00">08:00 - 09:30</option>
+                <option value="09:30">09:30 - 11:00</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div
+        class="{% if mostrar_form == 'true' %} {% else %} d-none {% endif %}"
+        id="selecionar_aulas"
+      >
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="col-9">
+              {{form.Dia_De_Aula_Disponivel|as_crispy_field }}
+              <button type="submit" class="btn btn-primary m-2">
+                Escolher data e horário da segunda aula
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var selected = [];
+
+    for (var option of document.getElementById("id_Dia_De_Aula_Disponivel")
+      .options) {
+      if (option.selected) {
+        selected.push(option.value);
+      }
+    }
+    console.log(selected);
+
+    document.querySelector("#dia_semana_2").onchange = function () {
+      dia_semana_2 = document.querySelector("#dia_semana_2").value;
+
+      if (dia_semana_2 != "") {
+        document
+          .querySelector("#horario_segunda_aula")
+          .classList.remove("d-none");
+      } else {
+        document.querySelector("#horario_segunda_aula").classList.add("d-none");
+      }
+    };
+
+    document.querySelector("#horario_2").onchange = function () {
+      horario_2 = document.querySelector("#horario_2").value;
+
+      if (horario_2 != "") {
+        document.querySelector("#escolhas_aluna").submit();
+      } else {
+        pass;
+      }
+    };
+  </script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+</html>

@@ -1,0 +1,277 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container m-2">
+      <form method="GET" id="escolhas_aluna">
+        <div class="" id="frequencia">
+          <div id="" class="control-group">
+            <label for="id_Frequ" class="control-label"> Frequencia </label>
+            <div class="controls">
+              <select name="Frequencia_Fake" class="select" id="id_Frequ">
+                <option value="" selected="">---------</option>
+                <option value="1">1x na semana</option>
+                <option value="2">2x na semana</option>
+                <option value="3">3x na semana</option>
+                <option value="4">Avulsa</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="d-none" id="dia_primeira_aula">
+          <div class="control-group">
+            <label for="dia_semana" class="control-label">
+              Selecione o dia da primeira aula
+            </label>
+            <div class="controls">
+              <select name="dia_semana" class="select" id="dia_semana">
+                <option value="" selected="">---------</option>
+                <option value="segunda">Segunda</option>
+                <option value="terca">Terça</option>
+                <option value="quarta">Quarta</option>
+                <option value="quinta">Quinta</option>
+                <option value="sexta">Sexta</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-none" id="dia_segunda_aula">
+          <div class="control-group">
+            <label for="dia_semana2" class="control-label">
+              Selecione o dia da segunda aula
+            </label>
+            <div class="controls">
+              <select name="dia_semana2" class="select" id="dia_semana2">
+                <option value="" selected="">---------</option>
+                <option value="segunda">Segunda</option>
+                <option value="terca">Terça</option>
+                <option value="quarta">Quarta</option>
+                <option value="quinta">Quinta</option>
+                <option value="sexta">Sexta</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-none" id="horario_primeira_aula">
+          <div class="control-group">
+            <label for="horario" class="control-label">
+              Selecione o horário da primeira aula
+            </label>
+            <div class="controls">
+              <select name="horario" class="select" id="horario">
+                <option value="" selected="">---------</option>
+                <option value="06:30">06:30 - 08:00</option>
+                <option value="08:00">08:00 - 09:30</option>
+                <option value="09:30">09:30 - 11:00</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-none" id="horario_segunda_aula">
+          <div class="control-group">
+            <label for="horario2" class="control-label">
+              Selecione o horário da segunda aula
+            </label>
+            <div class="controls">
+              <select name="horario2" class="select" id="horario2">
+                <option value="" selected="">---------</option>
+                <option value="06:30">06:30 - 08:00</option>
+                <option value="08:00">08:00 - 09:30</option>
+                <option value="09:30">09:30 - 11:00</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </form>
+      <div class="d-none" id="selecionar_aulas">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="col-9">
+
+              <label for="data_aula" class="d-none" id="label_data_aula">Selecione a data da primeira aula</label>
+              <input type="date" class="d-none" name="data_aula" id="data_aula" />
+              <label for="data_aula2" class="d-none" id="label_data_aula2">Selecione a data da segunda aula</label>
+              <input type="date" class="d-none" name="data_aula2" id="data_aula2" />
+              <input type="date" class="d-none" name="data_aula3" id="data_aula3" />
+
+              <div class="d-none">{{form.Frequencia|as_crispy_field }}</div>
+              <div class="d-none">{{form.Nivel|as_crispy_field }}</div>
+              <div class="d-none">{{form.Aula|as_crispy_field }}</div>
+              <div class="d-none" id="select_aulas">
+                {{form.Dia_De_Aula_Disponivel|as_crispy_field }}
+                <button type="submit" class="btn btn-primary m-2" id="btn_submit">
+                  Avançar para o pagamento <i class="fa fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    var selected = [];
+
+    for (var option of document.getElementById("id_Dia_De_Aula_Disponivel")
+      .options) {
+      if (option.selected) {
+        selected.push(option.value);
+      }
+    }
+    console.log(selected);
+
+    document.querySelector("#data_aula").onchange = function () {
+      data_escolhida = document.querySelector("#data_aula").value;
+      val_aula_1 = $(
+        "#id_Dia_De_Aula_Disponivel option:contains(" + data_escolhida + ")"
+      ).val();
+      document.querySelector("#id_Dia_De_Aula_Disponivel").value = val_aula_1;
+
+      for (var option of document.getElementById("id_Dia_De_Aula_Disponivel")
+        .options) {
+        if (option.selected) {
+          selected.push(document.getElementById("id_Dia_De_Aula_Disponivel").selectedIndex);
+        }
+      }
+      console.log(selected);
+
+      var frequencia = document.querySelector("#id_Frequencia").value
+      if (frequencia = '2') {
+      document.querySelector("#label_data_aula").classList.add('d-none')
+      document.querySelector("#data_aula").classList.add('d-none')
+      document.querySelector("#label_data_aula2").classList.remove('d-none')
+      document.querySelector("#data_aula2").classList.remove('d-none')
+
+      document.querySelector("#dia_primeira_aula").classList.add('d-none')
+      document.querySelector("#dia_segunda_aula").classList.remove('d-none')
+      document.querySelector("#horario_primeira_aula").classList.add('d-none')
+      document.querySelector("#horario_segunda_aula").classList.remove('d-none')
+      }
+    };
+
+    document.querySelector("#data_aula2").onchange = function () {
+      data_escolhida = document.querySelector("#data_aula2").value;
+
+      val_aula = $(
+        "#id_Dia_De_Aula_Disponivel option:contains(" + data_escolhida + ")"
+      ).val();
+      document.querySelector("#id_Dia_De_Aula_Disponivel").value = val_aula;
+      for (var option of document.getElementById("id_Dia_De_Aula_Disponivel")
+        .options) {
+        if (option.selected) {
+          selected.push(document.getElementById("id_Dia_De_Aula_Disponivel").selectedIndex);
+        }
+      }
+
+      console.log(selected);
+
+      var escolha1 = document.querySelector("#id_Dia_De_Aula_Disponivel").value = selected[0]
+      var escolha2 = document.querySelector("#id_Dia_De_Aula_Disponivel").value = selected[1]
+
+      console.log(escolha1);
+      console.log(escolha2);
+
+      escolha1.selected = true;
+      escolha2.selected = true;
+    };
+
+    document.querySelector("#id_Frequencia").value =
+      window.location.href.substring(39, 40);
+
+    if (parseInt(window.location.href.substring(20, 21))) {
+      document.querySelector("#selecionar_aulas").classList.add("d-none");
+    } else if (window.location.href.substring(39, 40) == "2") {
+      document.querySelector("#selecionar_aulas").classList.remove("d-none");
+      document.querySelector("#btn_submit").innerHTML =
+        "Escolher data e horário da segunda aula";
+    } else {
+      document.querySelector("#selecionar_aulas").classList.remove("d-none");
+    }
+
+    document.querySelector("#id_Frequ").onchange = function () {
+      frequencia = document.querySelector("#id_Frequ").value;
+      if (frequencia != "") {
+        document.querySelector("#dia_primeira_aula").classList.remove("d-none");
+      } else {
+        document.querySelector("#dia_primeira_aula").classList.add("d-none");
+      }
+    };
+
+    document.querySelector("#dia_semana").onchange = function () {
+      dia_semana = document.querySelector("#dia_semana").value;
+
+      if (dia_semana != "") {
+        document
+          .querySelector("#horario_primeira_aula")
+          .classList.remove("d-none");
+      } else {
+        document
+          .querySelector("#horario_primeira_aula")
+          .classList.add("d-none");
+      }
+    };
+
+    document.querySelector("#horario").onchange = function () {
+      horario = document.querySelector("#horario").value;
+
+      if (horario != "") {
+        var frequencia = document.querySelector("#id_Frequ").value
+        document.querySelector("#id_Frequencia").value = frequencia
+        console.log(frequencia)
+
+        document.querySelector("#label_data_aula").classList.remove('d-none')
+        document.querySelector("#data_aula").classList.remove('d-none')
+        document.querySelector("#select_aulas").classList.remove('d-none')
+
+      } else {
+        pass;
+      }
+    };
+
+  </script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+</html>

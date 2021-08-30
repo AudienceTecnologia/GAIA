@@ -1,0 +1,121 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+      <div class="row m-2">
+        <div class="col-3">
+          <div class="form-row">
+            <div class="col-12">
+              <form method="POST" id="dados_aluna" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="d-none">
+                  {{matriculaForm.Termos_E_Condicoes|as_crispy_field}}
+                  {{matriculaForm.Status|as_crispy_field}}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-3">
+          <center>
+            <h2>Resumo do pedido</h2>
+            <br>
+            <h4>Turmas fixas</h4>
+            <br>
+            <p>
+              Grupo com até 4 alunas por turma. 
+              {% if Dia_Semana1 %} 
+              {{ Dia_Semana1 }}, 
+              {% endif %}
+              {% if Dia_Semana2 %}
+              {{ Dia_Semana2 }} 
+              {% endif %}
+              {% if Dia_Semana3 %} 
+              e {{ Dia_Semana3 }} 
+              {% else %} 
+              . 
+              {% endif %}
+            </p>
+            <br>
+            <p>
+              {{ resumo.Frequencia }} R$ {{ resumo.Valor }},00
+            </p>
+            <form method="GET" id="matricula_form">
+              {% csrf_token %}
+              <div id="" class="control-group">
+                <div class="controls"> 
+                  <label for="Termos_E_Condicoes" class="checkbox ">
+                    <input onclick="document.querySelector('#id_Termos_E_Condicoes').checked = true" type="checkbox" class="checkboxinput" id="Termos_E_Condicoes">
+                    Termos E Condicoes 
+                  </label> 
+                </div>
+              </div>
+              <div id="" class="control-group">
+                <label for="Status" class="control-label ">
+                  Status 
+                </label> 
+                <div class="controls">
+                  <select name="" class="select" id="Status">
+                    <option value="" selected="">---------</option>
+                    <option value="atrasado">Atrasado</option>
+                    <option value="pago">Pago</option>
+                    <option value="cancelado">Cancelado</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <button type="button" onclick="submitForms()" class="btn btn-primary m-3">Finalizar compra</button>
+          </center>
+        </div>
+      </div>
+  </body>
+
+  <script>
+    document.querySelector("#hint_id_username").classList.add('d-none')
+    document.querySelector("#div_id_password1 > div > ul").classList.add('d-none')
+    document.querySelector("#hint_id_password2").classList.add('d-none')
+    document.querySelector("#id_Data_De_Nascimento").type = 'date'
+    document.querySelector("#id_email").type = 'email'
+
+    submitForms = function(){
+      document.querySelector('#dados_aluna').submit();
+    }
+
+    document.querySelector("#Status").onchange = function () {
+      document.querySelector("#id_Status").value = document.querySelector("#Status").value
+    }
+  </script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+</html>
