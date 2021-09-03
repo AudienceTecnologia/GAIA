@@ -1,0 +1,119 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <title>Gaia - Surfe Feminino</title>
+</head>
+
+<body>
+  <section id="conteudo">
+    <!-- <img class="logo" src="{% static 'img/GAIA_LOGOS copiar.png' %}"> -->
+
+    <form method="POST" id="selecionar_nivel">
+      {% csrf_token %}
+      <div class="d-none">
+        {{form.Nivel|as_crispy_field}}
+      </div>
+    </form>
+
+    <h2>
+      Para começarmos o seu cadastro, antes precisamos
+      descobrir qual é o seu nível no surfe.
+    </h2>
+    <p>Para isso escolha o nível de turma <br>em que mais se adequa.</p>
+  </section>
+  <div class="container-card">
+    <div class="row">
+      <div class="col">
+        <h1>Iniciante</h1>
+        <div class="imgcard">
+          <!--Criei essa div justamente para
+              alinhar as imagens das ondas uma do lado da outra.-->
+          <img src="{% static 'img/wave.png' %}" alt="">
+        </div>
+        <p>Sabe nadar mas nunca <br>teve experiência
+          <br>com surfe.
+        </p>
+        <a href="niveis.html">Selecionar nível</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1>Intermediário</h1>
+        <div class="imgcard">
+          <img src="{% static 'img/wave.png' %}" alt="">
+          <img src="{% static 'img/wave.png' %}" alt="">
+        </div>
+        <p>Sabe nadar mas nunca <br>teve experiência
+          <br>com surfe.
+        </p>
+        <a href="niveis.html">Selecionar nível</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1>Avançado</h1>
+        <div class="imgcard">
+          <img src="{% static 'img/wave.png' %}" alt="">
+          <img src="{% static 'img/wave.png' %}" alt="">
+          <img src="{% static 'img/wave.png' %}" alt="">
+        </div>
+        <p>Sabe nadar mas nunca <br>teve experiência
+          <br>com surfe.
+        </p>
+        <a href="niveis.html">Selecionar nível</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h1>Treino</h1>
+        <div class="imgcard">
+          <img src="{% static 'img/wave.png' %}" alt="">
+          <img src="{% static 'img/wave.png' %}" alt="">
+          <img src="{% static 'img/wave.png' %}" alt="">
+          <img src="{% static 'img/wave.png' %}" alt="">
+        </div>
+        <p>Sabe nadar mas nunca <br>teve experiência
+          <br>com surfe.
+        </p>
+        <a href="niveis.html">Selecionar nível</a>
+      </div>
+    </div>
+    </section>
+    <footer class="rodape">
+      <div class="icone-surf">
+        <img src="{% static 'img/surf-board.png' %}" alt="surf">
+      </div>
+      <div class="redes-sociais">
+        <img src="{% static 'img/GAIA_LOGOS2.png' %}" alt="sociais">
+        <a href="#"><i class="fab fa-instagram"></i> </a>
+        <a href="#"><i class="fab fa-facebook-f"></i> </a>
+        <a href="#"><i class="fab fa-whatsapp"></i> </a>
+      </div>
+
+
+    </footer>
+
+    <script>
+      document.querySelector("#id_Nivel").onchange = function () {
+        document.querySelector("#selecionar_nivel").submit();
+      }
+    </script>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/15cede858f.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

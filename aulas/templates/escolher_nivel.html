@@ -1,54 +1,144 @@
+{% load static %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+<html lang="pt-br">
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <title>Gaia - Surfe Feminino</title>
+</head>
 
-  <body>
-    <div class="container m-2">
-      <form method="POST" id="selecionar_nivel">
-          {% csrf_token %}
-          {{form.Nivel|as_crispy_field}}
-      </form>
+<body>
+  <section id="conteudo">
+    <form method="POST" id="selecionar_nivel">
+      {% csrf_token %}
+      <div class="d-none">
+        {{form.Nivel|as_crispy_field}}
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-12 p-5">
+        <h2 style="font-size: 21px; font-weight: bold;">
+          Para começarmos o seu cadastro, antes precisamos
+          descobrir qual é o seu nível no surfe.
+        </h2>
+
+        <p class="pl-4 pr-4" style="color: #737373; font-size: 18px;">Para isso escolha o nível de turma em que mais se
+          adequa:</p>
+
+      </div>
     </div>
-  </body>
-  <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"
-  ></script>
 
-  <script>
-    document.querySelector("#id_Nivel").onchange = function () {
-      document.querySelector("#selecionar_nivel").submit();
+  </section>
+
+  <style>
+    .card {
+      border-color: #BEBEBE;
+      border-width: 2px;
     }
-  </script>
 
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"
-  ></script>
+    .btn-primary {
+      background-color: #7EB3C9;
+      font-size: 25px;
+      border-color: transparent;
+    }
+  </style>
+
+  <div class="row d-flex justify-content-center">
+    <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
+      <div class="card-body text-center" style="color: #888888;">
+        <h3>Iniciante</h3>
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+
+        <p style="font-size: 35px;">Sabe nadar mas nunca teve experiência com o surfe.</p>
+
+        <button
+          onclick="document.getElementById('id_Nivel').value = '1', document.querySelector('#selecionar_nivel').submit();"
+          type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
+      <div class="card-body text-center" style="color: #888888;">
+        <h3>Intermediário</h3>
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+
+        <p style="font-size: 35px;">Possui experiência com surfe, mas não conhece todas as manobras</p>
+
+        <button
+          onclick="document.getElementById('id_Nivel').value = '2', document.querySelector('#selecionar_nivel').submit();"
+          type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
+      <div class="card-body text-center" style="color: #888888;">
+        <h3>Avançado</h3>
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+
+        <p style="font-size: 35px;">Ja arrisca algumas manobras e sabe técnicas de segurança.</p>
+
+        <button
+          onclick="document.getElementById('id_Nivel').value = '3', document.querySelector('#selecionar_nivel').submit();"
+          type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
+      <div class="card-body text-center" style="color: #888888;">
+        <h3>Treino</h3>
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
+
+        <p style="font-size: 32px;">Sabe todas as manobras e técnicas de segurança, pratica o surfe a algum tempo.</p>
+
+        <button
+          onclick="document.getElementById('id_Nivel').value = '4', document.querySelector('#selecionar_nivel').submit();"
+          type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="rodape">
+    <div class="icone-surf">
+      <img src="{% static 'img/surf-board.png' %}" alt="surf">
+      <br>
+      <br>
+    </div>
+    <div class="redes-sociais">
+      <img src="{% static 'img/GAIA_LOGOS2.png' %}" alt="sociais">
+      <a href="#"><i class="fab fa-instagram"></i> </a>
+      <a href="#"><i class="fab fa-facebook-f"></i> </a>
+      <a href="#"><i class="fab fa-whatsapp"></i> </a>
+    </div>
+
+
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://kit.fontawesome.com/15cede858f.js" crossorigin="anonymous"></script>
+
+</body>
+
 </html>
