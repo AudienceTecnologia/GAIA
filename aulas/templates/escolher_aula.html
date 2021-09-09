@@ -1,57 +1,169 @@
+{% load static %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
 
-  <body>
-    <div class="container m-2">
-      <form method="POST" id="selecionar_aula">
-          {% csrf_token %}
-          <div class="d-none">
-            {{form.Nivel|as_crispy_field}}
-          </div>
-          {{form.Aula|as_crispy_field}}
-      </form>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<style>
+  .btn-primary.ativo {
+    background-color: #7EB3C9;
+    border-color: transparent;
+  }
+
+  .btn-primary {
+    background-color: #BEBEBE;
+    border-color: transparent;
+  }
+
+  h4 {
+    color: #797979;
+  }
+
+  .number {
+    margin-top: 10%;
+    margin-left: -18%;
+  }
+
+  p {
+    font-weight: 500;
+    color: #797979;
+    font-size: 20px;
+  }
+</style>
+
+<body>
+  <div class="container m-2 d-none">
+    <form method="POST" id="selecionar_aula">
+      {% csrf_token %}
+      <div class="d-none">
+        {{form.Nivel|as_crispy_field}}
+      </div>
+      {{form.Aula|as_crispy_field}}
+    </form>
+  </div>
+
+  <div class="row" id="etapas">
+    <div class="col-12">
+      <div class="row number" style="margin-top: 5%;">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <a href="" class="btn btn-primary ativo float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">1</a>
+        </div>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Seleção de serviços</h4>
+        </div>
+      </div>
+      <div class="row number">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <a href="" class="btn btn-primary float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">2</a>
+        </div>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Detalhes do serviço</h4>
+        </div>
+      </div>
+      <div class="row number">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <a href="" class="btn btn-primary float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">3</a>
+        </div>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Método de pagamento</h4>
+        </div>
+      </div>
     </div>
-  </body>
-  <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"
-  ></script>
+  </div>
 
-  <script>
-    document.querySelector("#id_Aula").onchange = function () {
-      document.querySelector("#selecionar_aula").submit();
-    }
-  </script>
+  <center id="detalhe_1" class="d-none">
+    <br>
+    <h2 style="font-weight: lighter; color: #7EB3C9; letter-spacing: 5px;">
+      AULA DE SURFE MENSAL <br>(TURMA)
+    </h2>
+    <br>
+    <div>
+      <p>Essa é uma aula de surfe em grupo, com dias e horários fixos na semana.</p>
+      <br>
+      <p>Características da aula:</p>
+      <p>- 1h e 30min de duração</p>
+      <br>
+      <p>- até 4 alunas por professor</p>
+      <p>- aulas filmadas</p>
+      <br>
+      <p>- disponiblizamos todos <br>
+        os equipamentos necessários p/ aula</p>
+      <br>
+      <h2 style="color: #797979; font-size: 22px;">Valores:</h2>
+      <p>1x na semana --- R$270,00</p>
+      <p>2x na semana --- R$500,00</p>
+      <p>3x na semana --- R$700,00</p>
+      <p>4x na semana --- R$800,00</p>
+      <br>
+      <p>Aula experimental -- R$100,00</p>
+      <p>Aula avulsa -- R$80,00</p>
+      <p>*Lycra de uso obrigatório <br> durante as aulas -- R$90,00</p>
+      <br>
+      <button
+        onclick="document.getElementById('id_Aula').value = '1', document.querySelector('#selecionar_aula').submit();"
+        class="btn btn-primary" style="background-color: #7EB3C9; font-size: 25px;"><i class="fa fa-user"></i>
+        Fazer matrícula
+      </button>
+      <br>
+      <br>
+    </div>
+  </center>
 
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"
-  ></script>
+  <div class="container mt-5" id="card-aulas">
+    <div class="card img-fluid" style="width:500px">
+      <button class="btn" style="background-color: transparent; border-color: transparent;"
+        onclick="document.getElementById('detalhe_1').classList.remove('d-none'), document.getElementById('etapas').classList.add('d-none'), document.getElementById('card-aulas').classList.add('d-none')">
+        <img class="card-img-top" src="{% static 'img/Aula_Surfe_Mensal.jpeg' %}" alt="Card image" style="width:100%">
+        <div class="card-img-overlay">
+          <h4 class="float-right"
+            style="margin-top: 230px; color: rgb(206, 206, 206); background-color: rgb(0, 0, 0, 0.6); padding: 5%;">AULA
+            DE SURFE MENSAL (TURMA)</h4>
+        </div>
+      </button>
+    </div>
+
+    <div class="card img-fluid mt-3" style="width:500px">
+      <button class="btn" style="background-color: transparent; border-color: transparent;">
+        <img class="card-img-top" src="{% static 'img/Treino_Simulador.jpeg' %}" alt="Card image" style="width:100%">
+        <div class="card-img-overlay">
+          <h4 class="float-right"
+            style="margin-top: 230px; color: rgb(206, 206, 206); background-color: rgb(0, 0, 0, 0.6); padding: 5%;">
+            TREINO DE GAIA (SIMULADOR)</h4>
+        </div>
+      </button>
+    </div>
+
+  </div>
+
+  </section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </html>

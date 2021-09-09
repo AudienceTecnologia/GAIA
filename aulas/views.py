@@ -48,10 +48,52 @@ def home(request, id):
     dia_semana = request.GET.get('dia_semana')
     horario = request.GET.get('horario')
 
-    form.fields['Dia_De_Aula_Disponivel'].queryset = Dia_De_Aula_Disponivel.objects.filter(Quantidade_Atual_De_Alunas__lt=4).order_by('Inicio')
+    form.fields['Dia_De_Aula_Disponivel'].queryset = Dia_De_Aula_Disponivel.objects.filter(Quantidade_Atual_De_Alunas__lt=4).filter(Nivel=matricula.Nivel).order_by('Inicio')
     
     if request.method == 'POST':
         frequencia = request.POST.get('Frequencia')
+
+        form = MatriculaForm(request.POST, instance=matricula)
+        form.save()
+
+        btn_datas_diponiveis = request.POST.get('btn_datas_diponiveis')
+
+        ultima_matricula = Matricula.objects.last()
+
+        return redirect('/selecionar_data/' + str(ultima_matricula.id))
+
+    context = {'form': form, 'matricula': matricula}
+
+    return render(request, 'home.html', context)
+
+def selecionar_data(request, id):
+
+    matricula = get_object_or_404(Matricula, pk=id)
+
+    form = MatriculaForm(instance=matricula)
+
+    dia_semana = matricula.Dia_Semana
+
+    print(dia_semana)
+
+    if (dia_semana == 'Segunda') :
+      dia_semana = 'segunda'
+    elif (dia_semana == 'Terça') :
+      dia_semana = 'terca'
+    elif (dia_semana == 'Quarta') :
+      dia_semana = 'quarta'
+    elif (dia_semana == 'Quinta') :
+      dia_semana = 'quinta'
+    elif (dia_semana == 'Sexta') :
+      dia_semana = 'sexta'
+    elif (dia_semana == 'Sábado') :
+      dia_semana = 'sabado'
+    elif (dia_semana == 'Domingo') :
+      dia_semana = 'domingo'
+
+    form.fields['Dia_De_Aula_Disponivel'].queryset = Dia_De_Aula_Disponivel.objects.filter(Quantidade_Atual_De_Alunas__lt=4).filter(Nivel=matricula.Nivel).filter(Dia_Semana=dia_semana).filter(Inicio=matricula.Inicio).order_by('Inicio')
+    
+    if request.method == 'POST':
 
         form = MatriculaForm(request.POST, instance=matricula)
         form.save()
@@ -62,8 +104,7 @@ def home(request, id):
 
     context = {'form': form, 'matricula': matricula}
 
-    return render(request, 'home.html', context)
-
+    return render(request, 'selecionar_data.html', context)
 
 def resumo(request, id):
 
@@ -133,3 +174,11 @@ def resumo(request, id):
     context = {'form': form, 'matriculaForm': matriculaForm, 'resumo': resumo, 'Dia_Semana1': Dia_Semana1, 'Dia_Semana2': Dia_Semana2, 'Dia_Semana3': Dia_Semana3}
 
     return render(request, 'resumo.html', context)
+
+def criar_datas(request):
+    
+
+
+    context = {}
+
+    return render(request, 'criar_datas.html', context)

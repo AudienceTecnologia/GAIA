@@ -51,7 +51,7 @@ class Dia_De_Aula_Disponivel(models.Model):
     Professor                           = ForeignKey('users.Professor', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return str(self.Aula) + " " + str(self.Nivel) + ", Dia: " + str(self.Data) + " - " + str(self.Dia_Semana) + " - das " + str(self.Inicio) + " às " + str(self.Fim) + " - Vagas preenchidas: " + str(self.Quantidade_Atual_De_Alunas)
+        return "Dia: " + str(self.Data.strftime("%d/%m/%Y")) + " - " + str(self.Inicio.strftime("%H:%M")) + " às " + str(self.Fim.strftime("%H:%M"))
 
 STATUS = [
     ('atrasado', 'Atrasado'),
@@ -68,3 +68,6 @@ class Matricula(models.Model):
     Termos_E_Condicoes                  = BooleanField(default=False)
     Status                              = CharField(max_length=255, choices=STATUS, blank=True, null=True)
     Aluna                               = ForeignKey('users.User', on_delete=models.CASCADE, blank=True, null=True)
+
+    Dia_Semana                          = CharField(max_length=255, choices=DIA_SEMANA, blank=True, null=True)
+    Inicio                              = TimeField(blank=True, null=True)

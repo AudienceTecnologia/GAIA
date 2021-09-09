@@ -1,0 +1,215 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<style>
+  .btn-primary.ativo {
+    background-color: #d2e7f0;
+    border-color: transparent;
+  }
+
+  .btn-primary {
+    background-color: #BEBEBE;
+    border-color: transparent;
+  }
+
+  .btn-primary.selecionado {
+    background-color: #7EB3C9;
+  }
+
+  h4 {
+    color: #797979;
+  }
+
+  .number {
+    margin-top: 10%;
+    margin-left: -18%;
+  }
+
+  p {
+    font-weight: 500;
+    color: #797979;
+    font-size: 20px;
+  }
+
+  .borda {
+    border-color: #7EB3C9;
+    border-width: 2px;
+    color: #7EB3C9;
+  }
+
+  .btn-secondary {
+    background-color: #EAEAEA;
+    color: rgb(70, 70, 70);
+    border-color: transparent;
+  }
+
+  .back-azul-horario {
+    background-color: #b5e5fa;
+  }
+</style>
+
+<body style="background-color: white;">
+
+  <div class="row" id="etapas">
+    <div class="col-12">
+      <div class="row number" style="margin-top: 5%;">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <a href="" class="btn btn-primary float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">1</a>
+        </div>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Seleção de serviços</h4>
+        </div>
+      </div>
+      <div class="row number">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <a href="" class="btn btn-primary ativo float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">2</a>
+        </div>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Detalhes do serviço</h4>
+        </div>
+      </div>
+      <div class="row number">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <a href="" class="btn btn-primary float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">3</a>
+        </div>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Método de pagamento</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5" id="selecionar_aulas">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="d-none">
+        {{form.Nivel}}
+        {{form.Aula}}
+        {{form.Frequencia}}
+        {{form.Dia_Semana}}
+        {{form.Inicio}}
+      </div>
+      <div class="form-row">
+        <div class="col-12">
+
+          <label for="data_aula2" class="d-none" id="label_data_aula2">Selecione a data da segunda aula</label>
+          <input type="date" class="d-none" name="data_aula2" id="data_aula2" />
+          <label for="data_aula3" class="d-none" id="label_data_aula3">Selecione a data da terceira aula</label>
+          <input type="date" class="d-none" name="data_aula3" id="data_aula3" />
+
+          <div class="" id="select_aulas">
+            <center>
+              <h4 style="color: #7EB3C9;">4- Selecione a data da primeira aula</h4>
+              <div class="col-8">
+                <input type="date" class="form-control mt-3" name="data_aula" id="data_aula" />
+              </div>
+              {{form.Dia_De_Aula_Disponivel|as_crispy_field }}
+              <div class="col-5 mt-2">
+                <button type="button" class="btn btn-primary btn-block ativo d-none"
+                  onclick="this.classList.add('d-none'), document.getElementById('btn_submit').classList.remove('d-none')"
+                  id="btn_selecionar" style="font-size: 25px; background-color: #7EB3C9; border-radius: 15px;">
+                  Confirmar</button>
+              </div>
+              <button type="submit" class="btn btn-primary selecionado m-2 d-none" id="btn_submit"
+                style="font-size: 25px; border-radius: 10px;">
+                Avançar para o pagamento <i class="fa fa-arrow-right"></i>
+              </button>
+            </center>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+</body>
+
+<script>
+  document.querySelector("#div_id_Dia_De_Aula_Disponivel > label").classList.add('d-none');
+  document.querySelector("#id_Dia_De_Aula_Disponivel").style.marginTop = "20px";
+
+  var selected = [];
+
+  for (var option of document.getElementById("id_Dia_De_Aula_Disponivel")
+    .options) {
+    if (option.selected) {
+      selected.push(option.value);
+    }
+  }
+
+  document.querySelector("#data_aula").onchange = function () {
+    data_escolhida = document.querySelector("#data_aula").value;
+
+    data_escolhida = data_escolhida.split('-')
+
+    data_escolhida = data_escolhida[2] + "/" + data_escolhida[1] + "/" + data_escolhida[0]
+
+    contains = "Dia: " + data_escolhida
+
+    val_aula_1 = $(
+      "#id_Dia_De_Aula_Disponivel option:contains(" + contains + ")"
+    ).val();
+    document.querySelector("#id_Dia_De_Aula_Disponivel").value = val_aula_1;
+
+    if (val_aula_1) {
+      console.log("sim")
+
+      for (var option of document.getElementById("id_Dia_De_Aula_Disponivel")
+        .options) {
+        if (option.selected) {
+          selected.push(document.getElementById("id_Dia_De_Aula_Disponivel").selectedIndex);
+        }
+      }
+      console.log(selected);
+
+      document.querySelector("#btn_selecionar").classList.remove('d-none');
+
+    } else {
+      alert("Selecione uma data disponível!")
+    }
+
+    // var frequencia = document.querySelector("#id_Frequencia").value
+    // if (frequencia = '2') {
+    //   document.querySelector("#data_aula").classList.add('d-none')
+    //   document.querySelector("#label_data_aula2").classList.remove('d-none')
+    //   document.querySelector("#data_aula2").classList.remove('d-none')
+
+    //   document.querySelector("#dia_primeira_aula").classList.add('d-none')
+    //   document.querySelector("#dia_segunda_aula").classList.remove('d-none')
+    //   document.querySelector("#horario_primeira_aula").classList.add('d-none')
+    //   document.querySelector("#horario_segunda_aula").classList.remove('d-none')
+  };
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>

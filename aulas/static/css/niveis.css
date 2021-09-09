@@ -1,0 +1,350 @@
+/* CSS para a o arquivo niveis.html*/
+
+*{
+    border: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+#bg{display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.ball{
+    width: 7rem;
+    top:0;
+    left: 0;
+    background: var(--gray-Gaya);
+    clip-path: circle(); 
+    margin-top: 3rem;
+    margin-left: -30%; 
+}
+
+.ball:first-child{
+    background: var(--dark-blueGaya);
+    color: white;
+}
+
+
+
+.ball.top{
+    width: 7rem;
+    height: 7rem;
+}
+.ball.medium{
+    width: 7rem;
+    height: 7rem;
+}
+
+.ball.low{
+width: 7rem;
+height: 7rem;
+}
+
+#bg .ball p{
+   font-size: 3rem;
+   vertical-align: middle;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: black;
+
+}
+
+.imagens-aulas{
+   display: flex; 
+   align-items: center;
+   justify-content: center;
+   position: relative;
+}
+
+.imagens-aulas img{
+max-width: 100%;
+height: 36rem;
+width: 36rem;
+object-fit: cover;/*Utilizei o object-fit: cover, porque essa propriedade
+ajusta a imagem e cortou as partes que estavam sobrando, assim evitando
+que ficasse distorcida. */
+margin-top: 1rem ;
+}
+
+.imagens-aulas .saiba-mais{
+    width: 30rem;
+    float: right;
+    margin: 5rem 6rem;
+    margin-right: -.1%;
+    background: black;
+    position: absolute;
+    opacity: 0.6;
+    top: 47rem;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin-top: -22rem;
+    height: 7rem;
+}
+
+/*.saiba-mais.active{
+    margin-top: -22rem;
+    z-index: 1000;
+    height: calc(100vh - 1.5rem);
+    height: 97%;
+    top: 23rem;
+    z-index: 1000;
+}*/
+
+.imagens-aulas .saiba-mais a{
+    font-size: 3rem;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+/*CSS destinado ao arquivo saiba-mais.html*/
+#informacoes{
+    top: 1rem;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0rem -1rem ;
+    text-align: center;
+    flex-direction: column;
+    position: absolute;
+}
+
+#informacoes  h2{
+    color: var(--dark-blueGaya);
+}
+
+#informacoes p{
+    color:rgb(119, 81, 0);
+}
+
+#informacoes .logo{
+    width: 37rem
+}
+#informacoes .info{
+    align-items: center;
+    justify-content: center;
+}
+
+
+#informacoes .info p{
+    font-size: 1.3rem;
+}
+
+.fundo{
+    max-width: 40%;
+    margin-left: 29%;
+}
+.fundo:first-child{
+    margin-left: -10%;
+}
+.info a{
+    font-size: 2rem;
+    background: var(--dark-blueGaya);
+    padding: 1rem;
+    border-radius: .3rem;
+    color: white;
+}
+/*CSS destinado a parte da matricula.html*/
+.espaco{
+    padding: 2rem;
+}
+.div-calendario{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+.div-calendario .abrir{
+    background: var(--gray-Gaya);
+    padding: 1.5rem 5rem;
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+    border-radius: .5rem;
+}
+
+.calendario-modal{
+    max-width: max-content;
+    margin: 3rem auto 0 auto;
+    padding: 3rem;
+    background: linear-gradient(to right, rgb(55, 126, 102), rgb(139, 202, 183));
+    border: .1rem solid grey;
+    border-radius: .8rem;
+  }
+
+.main{width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.7); 
+    position: fixed; 
+    top:0; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    opacity: 0; 
+    visibility: hidden; 
+    z-index: 999;}
+   
+
+.main.active{opacity: 1; 
+    visibility: visible;} /*Estilo será aplicado 
+após clicar no botão abrir*/
+
+.abrir{display:inline-block; 
+    margin-bottom: .8rem;}
+
+.fechar{
+    font-weight: bold;
+    position: fixed;
+    top: 16rem;
+    text-decoration: none;
+    color: whitesmoke;
+    right: 42rem;
+    cursor: pointer;
+}  
+.fechar:hover{
+    color: whitesmoke;
+}  
+
+.mes{
+    color: whitesmoke;
+    text-align: center;
+    font-weight: 500;  
+} 
+
+.dia, .data{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.dia{
+    margin-top: 1rem;
+}
+
+.dia > * {
+    font-size: 1rem;
+    color: whitesmoke;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    font-variant: small-caps;
+    text-align: center;
+  }
+
+.data{
+    margin-top: .5rem;
+}
+
+.data button:first-child{
+    grid-column: 1;
+}
+
+.data button{
+    background: transparent;
+} /*Toda essa parte, desde o main até o .data button é destinado a estilização do calendário, bem como o abre e fecha.*/
+
+.container{
+    display:flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 1rem;
+    justify-items: center; 
+    flex-direction: column;  
+    flex-wrap: wrap;
+    margin-top: 5rem;
+}
+.container h1{
+    color: var(--dark-blueGaya);
+}
+.container .div-button{
+    display:flex; 
+    align-items: center; 
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.div-button button{
+    width: 14rem;
+    padding: .5rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    background: var(--light-blueGaya);
+    border-color: var(--dark-blueGaya);
+}
+
+.div-button button:hover{
+    background: var(--dark-blueGaya);
+    border-color: var(--dark-blueGaya);
+}
+.sombra{
+    display:flex; 
+    align-items: center; 
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: .1rem -.1rem .3rem #000;
+}
+.sombra button{
+    background: transparent;
+    border: none;
+    font-weight: bold;
+}
+.sombra button:hover{
+    background: transparent;
+    border-color: var(--dark-blueGaya);
+}
+.horario{
+    display:flex; 
+    align-items: center; 
+    justify-content: center;
+    flex-direction: column;
+}
+
+.horario button{
+    letter-spacing: .3rem;
+    font-weight: 500;
+    background: var(--gray-Gaya);
+}
+.selecionar{
+    padding: .5rem;
+    width: 10rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    height: 3.5rem;
+    color: whitesmoke;
+    background: var(--blue-Gaia);
+    font-weight: 800;
+}
+
+.avancar{
+    padding: 1rem;
+    margin-top: 3rem;
+    border-radius:1rem;
+    height: 4rem;
+    width: 24rem;
+    background: var(--blue-Gaia);
+    color: whitesmoke;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+}
+.avancar:hover{
+    color: whitesmoke;
+}
+.sel-professor{
+    width: 50%;
+    border-radius: .3rem;
+    border: 1px solid var(--dark-blueGaya);
+    background: white;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+.sel-professor:hover{
+    color: black;
+}
