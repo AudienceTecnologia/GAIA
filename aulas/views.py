@@ -74,23 +74,6 @@ def selecionar_data(request, id):
 
     dia_semana = matricula.Dia_Semana
 
-    # print(dia_semana)
-
-    # if (dia_semana == 'Segunda') :
-    #   dia_semana = 'segunda'
-    # elif (dia_semana == 'Terça') :
-    #   dia_semana = 'terca'
-    # elif (dia_semana == 'Quarta') :
-    #   dia_semana = 'quarta'
-    # elif (dia_semana == 'Quinta') :
-    #   dia_semana = 'quinta'
-    # elif (dia_semana == 'Sexta') :
-    #   dia_semana = 'sexta'
-    # elif (dia_semana == 'Sábado') :
-    #   dia_semana = 'sabado'
-    # elif (dia_semana == 'Domingo') :
-    #   dia_semana = 'domingo'
-
     form.fields['Dia_De_Aula_Disponivel'].queryset = Dia_De_Aula_Disponivel.objects.filter(Quantidade_Atual_De_Alunas__lt=4).filter(Nivel=matricula.Nivel).filter(Dia_Semana=dia_semana).filter(Inicio=matricula.Inicio).order_by('Inicio')
     
     if request.method == 'POST':
