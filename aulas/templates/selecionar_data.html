@@ -64,6 +64,7 @@
   .back-azul-horario {
     background-color: #b5e5fa;
   }
+  
 </style>
 
 <body style="background-color: white;">
@@ -126,7 +127,9 @@
               <div class="col-8">
                 <input type="date" class="form-control mt-3" name="data_aula" id="data_aula" />
               </div>
-              {{form.Dia_De_Aula_Disponivel|as_crispy_field }}
+              <div class="col-8">
+                {{form.Dia_De_Aula_Disponivel|as_crispy_field }}
+              </div>
               <div class="col-5 mt-2">
                 <button type="button" class="btn btn-primary btn-block ativo d-none"
                   onclick="this.classList.add('d-none'), document.getElementById('btn_submit').classList.remove('d-none')"

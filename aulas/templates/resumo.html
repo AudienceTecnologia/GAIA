@@ -1,121 +1,201 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
 
-  <body>
-      <div class="row m-2">
+<style>
+  .btn-primary.ativo {
+    background-color: #7EB3C9;
+    border-color: transparent;
+  }
+
+  .btn-primary {
+    background-color: #BEBEBE;
+    border-color: transparent;
+  }
+
+  h4 {
+    color: #797979;
+  }
+
+  .number {
+    margin-top: 10%;
+    margin-left: -18%;
+  }
+
+  p {
+    font-weight: 500;
+    color: #797979;
+    font-size: 20px;
+  }
+</style>
+
+<body>
+
+  <div class="row" id="etapas">
+    <div class="col-12">
+      <div class="row number" style="margin-top: 5%;">
+        <div class="col-2"></div>
         <div class="col-3">
-          <div class="form-row">
-            <div class="col-12">
-              <form method="POST" id="dados_aluna" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <div class="d-none">
-                  {{matriculaForm.Termos_E_Condicoes|as_crispy_field}}
-                  {{matriculaForm.Status|as_crispy_field}}
-                </div>
-              </form>
-            </div>
-          </div>
+          <a href="" class="btn btn-primary float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">1</a>
         </div>
-        <div class="col-6"></div>
-        <div class="col-3">
-          <center>
-            <h2>Resumo do pedido</h2>
-            <br>
-            <h4>Turmas fixas</h4>
-            <br>
-            <p>
-              Grupo com até 4 alunas por turma. 
-              {% if Dia_Semana1 %} 
-              {{ Dia_Semana1 }}, 
-              {% endif %}
-              {% if Dia_Semana2 %}
-              {{ Dia_Semana2 }} 
-              {% endif %}
-              {% if Dia_Semana3 %} 
-              e {{ Dia_Semana3 }} 
-              {% else %} 
-              . 
-              {% endif %}
-            </p>
-            <br>
-            <p>
-              {{ resumo.Frequencia }} R$ {{ resumo.Valor }},00
-            </p>
-            <form method="GET" id="matricula_form">
-              {% csrf_token %}
-              <div id="" class="control-group">
-                <div class="controls"> 
-                  <label for="Termos_E_Condicoes" class="checkbox ">
-                    <input onclick="document.querySelector('#id_Termos_E_Condicoes').checked = true" type="checkbox" class="checkboxinput" id="Termos_E_Condicoes">
-                    Termos E Condicoes 
-                  </label> 
-                </div>
-              </div>
-              <div id="" class="control-group">
-                <label for="Status" class="control-label ">
-                  Status 
-                </label> 
-                <div class="controls">
-                  <select name="" class="select" id="Status">
-                    <option value="" selected="">---------</option>
-                    <option value="atrasado">Atrasado</option>
-                    <option value="pago">Pago</option>
-                    <option value="cancelado">Cancelado</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-            <button type="button" onclick="submitForms()" class="btn btn-primary m-3">Finalizar compra</button>
-          </center>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Seleção de serviços</h4>
         </div>
       </div>
-  </body>
+      <div class="row number">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <a href="" class="btn btn-primary float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">2</a>
+        </div>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Detalhes do serviço</h4>
+        </div>
+      </div>
+      <div class="row number">
+        <div class="col-2"></div>
+        <div class="col-3">
+          <a href="" class="btn btn-primary ativo float-right"
+            style="border-radius: 50px; width: 60px; font-size: 30px;">3</a>
+        </div>
+        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
+          <h4>Método de pagamento</h4>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-    document.querySelector("#hint_id_username").classList.add('d-none')
-    document.querySelector("#div_id_password1 > div > ul").classList.add('d-none')
-    document.querySelector("#hint_id_password2").classList.add('d-none')
-    document.querySelector("#id_Data_De_Nascimento").type = 'date'
-    document.querySelector("#id_email").type = 'email'
+  <div class="row">
+    <div class="col-12 p-4">
+      <div class="card p-2">
+        <center>
+          <h4 style="font-size: 20px; font-weight: normal; color: rgb(124, 124, 124);">Complete seu cadastro e pagamento
+            para concluírmos sua matrícula</h4>
+        </center>
+        <hr>
+        <form method="POST" id="dados_aluna" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <hr>
+          <div class="d-none">
+            {{matriculaForm.Termos_E_Condicoes|as_crispy_field}}
+            {{matriculaForm.Status|as_crispy_field}}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-    submitForms = function(){
-      document.querySelector('#dados_aluna').submit();
-    }
+  <div class="row">
+    <div class="col-12" style="padding: 0 15%;">
+      <center>
+        <h2 style="margin-bottom: 5%; letter-spacing: 2px; color: rgb(97, 97, 97);">Resumo do pedido</h2>
+      </center>
+      <div class="card p-2" style="border-radius: 25px;">
+        <center>
+          <br>
+          <h2 style="font-weight: lighter; letter-spacing: 2px;">TURMAR FIXAS</h2>
+          <br>
+          <p>
+            Duração da aula 1h30min
+            <br>
+            <br>
+            Grupo com até 4 alunas por turma.
+            {% if Dia_Semana1 %}
+            {{ Dia_Semana1 }}.
+            {% elif Dia_Semana and Dia_Semana2 %}
+            {{ Dia_Semana1 }},
+            {% endif %}
+            {% if Dia_Semana2 %}
+            {{ Dia_Semana2 }}
+            {% endif %}
+            {% if Dia_Semana3 %}
+            e {{ Dia_Semana3 }}
+            {% else %}
+            {% endif %}
+          </p>
+          <br>
+          <p>
+            {{ resumo.Frequencia }} R$ {{ resumo.Valor }},00
+          </p>
+        </center>
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <center>
+        <form method="GET" id="matricula_form">
+          {% csrf_token %}
+          <div id="" class="control-group">
+            <div class="controls">
+              <label for="Termos_E_Condicoes" class="checkbox " style="font-size: 23px; color: rgb(162, 162, 162);">
+                <input onclick="document.querySelector('#id_Termos_E_Condicoes').checked = true" type="checkbox"
+                  class="checkboxinput" id="Termos_E_Condicoes">
+                Aceito os <span style="text-decoration: underline; text-decoration-color: #7EB3C9;">Termos E
+                  Condicoes</span> da escola;
+              </label>
+            </div>
+          </div>
+          <div id="" class="control-group">
+            <label for="Status" class="control-label ">
+              Status
+            </label>
+            <div class="controls">
+              <select name="" class="select" id="Status">
+                <option value="" selected="">---------</option>
+                <option value="atrasado">Atrasado</option>
+                <option value="pago">Pago</option>
+                <option value="cancelado">Cancelado</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" onclick="submitForms()" class="btn btn-primary ativo m-3"
+            style="font-size: 30px; border-radius: 15px; padding: 2% 6%; letter-spacing: 1px;">Finalizar Compra</button>
+        </form>
+      </center>
+    </div>
+  </div>
 
-    document.querySelector("#Status").onchange = function () {
-      document.querySelector("#id_Status").value = document.querySelector("#Status").value
-    }
-  </script>
+</body>
 
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"
-  ></script>
+<script>
+  document.querySelector("#Termos_E_Condicoes").required = true;
+  document.querySelector("#hint_id_password1").classList.add('d-none')
+  document.querySelector("#hint_id_password2").classList.add('d-none')
+  document.querySelector("#hint_id_username").classList.add('d-none')
+  document.querySelector("#hint_id_password2").classList.add('d-none')
+  document.querySelector("#id_Data_De_Nascimento").type = 'date'
+  document.querySelector("#id_email").type = 'email'
+
+  submitForms = function () {
+    document.querySelector('#dados_aluna').submit();
+  }
+
+  document.querySelector("#Status").onchange = function () {
+    document.querySelector("#id_Status").value = document.querySelector("#Status").value
+  }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </html>
