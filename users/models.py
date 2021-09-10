@@ -32,3 +32,4 @@ class Professor(models.Model):
     Aulas                       = ManyToManyField(Aula, blank=True)
     Local                       = ManyToManyField(Local, blank=True)
     Dias_De_Aula_Disponiveis    = ManyToManyField(Dia_De_Aula_Disponivel, blank=True)
+    Matriculas                  = ManyToManyField(Matricula, blank=True)

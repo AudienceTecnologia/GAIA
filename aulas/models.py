@@ -3,6 +3,7 @@ from django.db.models import base
 from django.db.models.fields import BooleanField, CharField, DateField, DateTimeField, IntegerField, TextField, TimeField
 from django.db.models.fields.related import ForeignKey, ManyToManyField
 
+
 class Nivel(models.Model):
     Nome                                = CharField(max_length=255, blank=True, null=True)
 
@@ -47,8 +48,6 @@ class Dia_De_Aula_Disponivel(models.Model):
     Fim                                 = TimeField(blank=True, null=True)
     Quantidade_Maxima_De_Alunas         = IntegerField(blank=True, null=True)
     Quantidade_Atual_De_Alunas          = IntegerField(default=0)
-    Alunas                              = ManyToManyField('users.Aluna', blank=True)
-    Professor                           = ForeignKey('users.Professor', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return "Dia: " + str(self.Data.strftime("%d/%m/%Y")) + " - " + str(self.Inicio.strftime("%H:%M")) + " às " + str(self.Fim.strftime("%H:%M"))
@@ -67,7 +66,6 @@ class Matricula(models.Model):
     Valor                               = CharField(max_length=255, blank=True, null=True)
     Termos_E_Condicoes                  = BooleanField(default=False)
     Status                              = CharField(max_length=255, choices=STATUS, blank=True, null=True)
-    Aluna                               = ForeignKey('users.User', on_delete=models.CASCADE, blank=True, null=True)
 
     Dia_Semana                          = CharField(max_length=255, choices=DIA_SEMANA, blank=True, null=True)
     Inicio                              = TimeField(blank=True, null=True)

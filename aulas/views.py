@@ -76,6 +76,10 @@ def selecionar_data(request, id):
 
     form.fields['Dia_De_Aula_Disponivel'].queryset = Dia_De_Aula_Disponivel.objects.filter(Quantidade_Atual_De_Alunas__lt=4).filter(Nivel=matricula.Nivel).filter(Dia_Semana=dia_semana).filter(Inicio=matricula.Inicio).order_by('Inicio')
     
+    print(matricula.Dia_Semana)
+    print(matricula.Inicio)
+    print(matricula.Nivel)
+
     if request.method == 'POST':
 
         form = MatriculaForm(request.POST, instance=matricula)
@@ -141,6 +145,10 @@ def resumo(request, id):
         resumo.Termos_E_Condicoes = True
         resumo.Aluna = User.objects.last()
         resumo.save()
+
+        Aluna.objects.create(User=User.objects.last())
+
+        Aluna.objects.last().Matriculas.set([id])
 
         ultima_aluna = User.objects.last()
         ultima_aluna.Tipo = "aluna"
