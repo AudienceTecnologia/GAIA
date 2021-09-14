@@ -16,7 +16,31 @@
   <title>Gaia - Surfe Feminino</title>
 </head>
 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+  * {
+    font-family: 'Mulish', sans-serif;
+  }
+
+  .card {
+    border-color: #BEBEBE;
+    border-width: 2px;
+  }
+
+  .btn-primary {
+    background-color: #7EB3C9;
+    font-size: 25px;
+    border-color: transparent;
+  }
+</style>
+
 <body>
+  <img src="{% static 'img/Folhas.png' %}" alt="" style="position: absolute; left: -180px; width: 170%;">
+  <center>
+    <img class="mt-5" src="{% static 'img/LOGO.png' %}" alt="" width="50%">
+  </center>
+
   <section id="conteudo">
     <form method="POST" id="selecionar_nivel">
       {% csrf_token %}
@@ -27,37 +51,19 @@
 
     <div class="row">
       <div class="col-12 p-5">
-        <h2 style="font-size: 21px; font-weight: bold;">
+        <h2 style="font-size: 25px; font-weight: bold;">
           Para começarmos o seu cadastro, antes precisamos
           descobrir qual é o seu nível no surfe.
         </h2>
 
-        <p class="pl-4 pr-4" style="color: #737373; font-size: 18px;">Para isso escolha o nível de turma em que mais se
+        <p class="pl-4 pr-4" style="color: #737373; font-size: 18px;">Para isso escolha o nível de turma em que mais
+          se
           adequa:</p>
 
       </div>
     </div>
 
   </section>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-
-    * {
-      font-family: 'Mulish', sans-serif;
-    }
-    
-    .card {
-      border-color: #BEBEBE;
-      border-width: 2px;
-    }
-
-    .btn-primary {
-      background-color: #7EB3C9;
-      font-size: 25px;
-      border-color: transparent;
-    }
-  </style>
 
   <div class="row d-flex justify-content-center">
     <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
