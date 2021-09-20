@@ -23,6 +23,41 @@
     font-family: 'Mulish', sans-serif;
   }
 
+  .btn-primary.ativo {
+    background-color: #7EB3C9;
+    border-color: transparent;
+  }
+
+  .btn-primary.ativo:hover {
+    background-color: #7EB3C9;
+    border-color: transparent;
+  }
+
+  .btn-primary {
+    background-color: #E8E8E8;
+    border-color: transparent;
+  }
+
+  .btn-primary:hover {
+    background-color: #E8E8E8;
+    border-color: transparent;
+  }
+
+  h5 {
+    color: #797979;
+  }
+
+  .number {
+    margin-top: 10%;
+    margin-left: -18%;
+  }
+
+  p {
+    font-weight: 500;
+    color: #797979;
+    font-size: 15px;
+  }
+
   .card {
     border-color: #BEBEBE;
     border-width: 2px;
@@ -33,12 +68,25 @@
     font-size: 25px;
     border-color: transparent;
   }
+
+  @media(max-width: 1500px) {
+    .logo {
+      width: 20%;
+      position: relative;
+    }
+    .folhas-mobile {
+      visibility: hidden;
+    }  
+  }
+
 </style>
 
-<body>
-  <img src="{% static 'img/Folhas.png' %}" alt="" style="position: absolute; left: -180px; width: 170%;">
+<body scroll="no" style="overflow: hidden">
+  <img src="{% static 'img/Escolha seu nível – 1.png' %}" alt="" style="position: absolute; width: 100%;">
+  <img src="{% static 'img/Folhas.png' %}" class="folhas-mobile" alt="" style="position: absolute; left: -180px; width: 170%;">
+  <img src="{% static 'img/Folhas.png' %}" class="folhas-mobile" alt="" style="position: absolute; left: -180px; width: 170%;">
   <center>
-    <img class="mt-5" src="{% static 'img/LOGO.png' %}" alt="" width="50%">
+    <img class="logo mt-3" src="{% static 'img/LOGO.png' %}" alt="" width="50%">
   </center>
 
   <section id="conteudo">
@@ -50,89 +98,95 @@
     </form>
 
     <div class="row">
-      <div class="col-12 p-5">
-        <h2 style="font-size: 25px; font-weight: bold;">
-          Para começarmos o seu cadastro, antes precisamos
-          descobrir qual é o seu nível no surfe.
-        </h2>
-
-        <p class="pl-4 pr-4" style="color: #737373; font-size: 18px;">Para isso escolha o nível de turma em que mais
-          se
-          adequa:</p>
-
+      <div class="col-12 p-4">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <h2 class="text-pc" style="font-weight: bold; font-size: 25px;">
+                Para começarmos o seu cadastro, <br> antes precisamos
+                descobrir qual é o seu nível no surfe.
+              </h2>
+      
+              <p class="pl-4 pr-4" style="color: #737373; font-size: 20px;">Para isso escolha o nível de turma em que mais
+                se
+                adequa:</p>
+            </div>
+          </div>
       </div>
     </div>
 
   </section>
 
-  <div class="row d-flex justify-content-center">
-    <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
-      <div class="card-body text-center" style="color: #888888;">
-        <h3>Iniciante</h3>
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-
-        <p style="font-size: 35px;">Sabe nadar mas nunca teve experiência com o surfe.</p>
-
-        <button
-          onclick="document.getElementById('id_Nivel').value = '1', document.querySelector('#selecionar_nivel').submit();"
-          type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+  <div class="row">
+    <div class="col-3 d-flex justify-content-center">
+      <div class="card" style="width: 85%; min-height: 46vh; max-height: 46vh;">
+        <div class="card-body text-center" style="color: #888888;">
+          <h3>Iniciante</h3>
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+  
+          <p style="font-size: 21px; text-align: center;">Sabe nadar mas nunca teve experiência com o surfe.</p>
+  
+          <button
+            onclick="document.getElementById('id_Nivel').value = '1', document.querySelector('#selecionar_nivel').submit();"
+            type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-5 d-flex justify-content-center">
-    <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
-      <div class="card-body text-center" style="color: #888888;">
-        <h3>Intermediário</h3>
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-
-        <p style="font-size: 35px;">Possui experiência com surfe, mas não conhece todas as manobras</p>
-
-        <button
-          onclick="document.getElementById('id_Nivel').value = '2', document.querySelector('#selecionar_nivel').submit();"
-          type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+    <div class="col-3 d-flex justify-content-center">
+      <div class="card" style="width: 85%; min-height: 46vh; max-height: 46vh;">
+        <div class="card-body text-center" style="color: #888888;">
+          <h3>Intermediário</h3>
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+  
+          <p style="font-size: 20px;">Possui experiência com surfe, mas não conhece todas as manobras</p>
+  
+          <button
+            onclick="document.getElementById('id_Nivel').value = '2', document.querySelector('#selecionar_nivel').submit();"
+            type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-5 d-flex justify-content-center">
-    <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
-      <div class="card-body text-center" style="color: #888888;">
-        <h3>Avançado</h3>
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-
-        <p style="font-size: 35px;">Ja arrisca algumas manobras e sabe técnicas de segurança.</p>
-
-        <button
-          onclick="document.getElementById('id_Nivel').value = '3', document.querySelector('#selecionar_nivel').submit();"
-          type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+    <div class="col-3 d-flex justify-content-center">
+      <div class="card" style="width: 85%; min-height: 46vh; max-height: 46vh;">
+        <div class="card-body text-center" style="color: #888888;">
+          <h3>Avançado</h3>
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+  
+          <p style="font-size: 20px;">Ja arrisca algumas manobras e sabe técnicas de segurança.</p>
+  
+          <button
+            onclick="document.getElementById('id_Nivel').value = '3', document.querySelector('#selecionar_nivel').submit();"
+            type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-5 d-flex justify-content-center">
-    <div class="card" style="width: 85%; min-height: 53vh; max-height: 53vh;">
-      <div class="card-body text-center" style="color: #888888;">
-        <h3>Treino</h3>
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-        <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="70px">
-
-        <p style="font-size: 32px;">Sabe todas as manobras e técnicas de segurança, pratica o surfe a algum tempo.</p>
-
-        <button
-          onclick="document.getElementById('id_Nivel').value = '4', document.querySelector('#selecionar_nivel').submit();"
-          type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+    <div class="col-3 d-flex justify-content-center">
+      <div class="card" style="width: 85%; min-height: 46vh; max-height: 46vh;">
+        <div class="card-body text-center" style="color: #888888;">
+          <h3>Treino</h3>
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+          <img class="mx-auto d-inline" src="{% static 'img/wave.png' %}" alt="" width="50px">
+  
+          <p style="font-size: 16.5px;">Já possui autonomia. <br> Busca aperfeiçoar <br> manobras e desbravar <br> novos picos c/ orientação.</p>
+  
+          <button
+            onclick="document.getElementById('id_Nivel').value = '4', document.querySelector('#selecionar_nivel').submit();"
+            type="button" class="btn btn-primary" href="">Selecionar Nível</button>
+        </div>
       </div>
     </div>
+
   </div>
 
-
-  <footer class="rodape">
+  <!-- <footer class="rodape">
     <div class="icone-surf">
       <img src="{% static 'img/surf-board.png' %}" alt="surf">
       <br>
@@ -146,7 +200,7 @@
     </div>
 
 
-  </footer>
+  </footer> -->
 
   <script src="script.js"></script>
   <script src="https://kit.fontawesome.com/15cede858f.js" crossorigin="anonymous"></script>

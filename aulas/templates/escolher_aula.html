@@ -15,6 +15,8 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 
 <style>
@@ -29,12 +31,22 @@
     border-color: transparent;
   }
 
-  .btn-primary {
-    background-color: #BEBEBE;
+  .btn-primary.ativo:hover {
+    background-color: #7EB3C9;
     border-color: transparent;
   }
 
-  h4 {
+  .btn-primary {
+    background-color: #E8E8E8;
+    border-color: transparent;
+  }
+
+  .btn-primary:hover {
+    background-color: #E8E8E8;
+    border-color: transparent;
+  }
+
+  h5 {
     color: #797979;
   }
 
@@ -46,16 +58,89 @@
   p {
     font-weight: 500;
     color: #797979;
+    font-size: 15px;
+  }
+
+  .card {
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    cursor: pointer;
+    min-height: 200px;
+    min-width: 400px;
+  }
+
+  .card:hover {
+    background-color: #7EB2C8;
+    background-image: url();
+  }
+
+  .card h3 {
+    position: absolute;
+    bottom: 10%;
+    background-color: black;
+    color: white;
+    padding: 2%;
+    width: 90%;
+    right: 0;
     font-size: 20px;
+    opacity: 0.7;
+  }
+
+  .card-1 {
+    background-image: url("{% static 'img/WhatsApp Image 2021-07-13 at 19.39.52.jpeg' %}");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
   }
 </style>
 
-<body>
-  <img src="{% static 'img/Folhas.png' %}" alt="" style="position: absolute; left: -180px; width: 170%;">
+<body scroll="no" style="overflow: hidden">
+
+  <div style="position: absolute; right: 0; z-index: 20;">
+    <div class="collapse collapse-horizontal" id="collapseWidthExample">
+      <div class="shadow card-body" style="background-color: white; min-width: 800px; width: 100%; height: 1000px;">
+        <h2 style="font-weight: lighter; color: #7EB3C9; letter-spacing: 5px;">
+          AULA DE SURFE MENSAL (TURMA)
+        </h2>
+        <div>
+          <p>Essa é uma aula de surfe em grupo, com dias e horários fixos na semana.</p>
+          <p>Características da aula:</p>
+          <p>
+            - 1h e 30min de duração <br>
+            - até 4 alunas por professor <br>
+            - aulas filmadas <br>
+            - disponiblizamos todos os equipamentos necessários p/ aula
+          </p>
+          <h2 style="color: #797979; font-size: 22px;">Valores:</h2>
+          <p>1x na semana --- R$270,00</p>
+          <p>2x na semana --- R$500,00</p>
+          <p>3x na semana --- R$700,00</p>
+          <p>4x na semana --- R$800,00</p>
+
+          <p>Aula experimental -- R$100,00</p>
+          <p>Aula avulsa -- R$80,00</p>
+          <p>*Lycra de uso obrigatório durante as aulas -- R$90,00</p>
+
+          <button
+            onclick="document.getElementById('id_Aula').value = '1', document.querySelector('#selecionar_aula').submit();"
+            class="btn btn-primary" style="background-color: #7EB3C9; font-size: 25px;"><i class="fa fa-user"></i>
+            Fazer matrícula
+          </button>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img src="{% static 'img/Grupo 1010.png' %}" alt="" style="position: absolute; width: 110%; top: -25%;">
+  <!-- <a href="/"><h4 style="color: rgb(160, 160, 160);"><i class="fa fa-chevron-left"></i> Voltar</h4></a> -->
   <center>
-    <img class="mt-5" src="{% static 'img/LOGO.png' %}" alt="" width="50%">
+    <img class="mt-3" src="{% static 'img/LOGO.png' %}" alt="" width="50%"
+      style="position: absolute; width: 20%; left: 3%;">
   </center>
-  
+
   <div class="container m-2 d-none">
     <form method="POST" id="selecionar_aula">
       {% csrf_token %}
@@ -66,40 +151,81 @@
     </form>
   </div>
 
-  <div class="row" id="etapas">
+  <div class="row align-self-center">
+    <div class="col-3" style="margin-left: 22%; margin-top: 2%;">
+      <h5 class="float-right mt-3 ml-3">Seleção de serviços</h5>
+      <a class="btn btn-primary ativo float-right"
+        style="border-radius: 90px; width: 30px; font-size: 20px; height: 50px; padding: 2.7% 10% 0 6%;">1</a>
+    </div>
+    <div class="col-3" style="margin-left: -2%; margin-top: 2%;">
+      <h5 class="float-right mt-3 ml-3">Detalhes do serviço</h5>
+      <a class="btn btn-primary float-right"
+        style="border-radius: 90px; width: 30px; font-size: 20px; height: 50px; padding: 2.7% 10% 0 6%;">2</a>
+    </div>
+    <div class="col-3" style="margin-top: 2%;">
+      <h5 class="float-right mt-3 ml-3">Método de pagamento</h5>
+      <a class="btn btn-primary float-right"
+        style="border-radius: 90px; width: 30px; font-size: 20px; height: 50px; padding: 2.7% 10% 0 6%;">3</a>
+    </div>
+  </div>
+
+  <div class="row mt-5 ml-2">
+    <div class="col-3">
+      <div class="card card-1 card-surfe" style="background-color: #7EB2C8;">
+        <div class="form-row d-none" id="texto-atras">
+          <div class="col-1"></div>
+          <div class="col-auto">
+            <h5 style="color: white; margin-top: 10%;">Mais detalhes do serviço</h5>
+            <p style="color: white; font-size: 14px; margin-top: 5%;">Aqui você encontra uma breve descrição do serviço
+            </p>
+            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseWidthExample" aria-expanded="false"
+              style="border-radius: 25px; border-color: white; color: white; margin-left: -1%;">Saiba mais</button>
+          </div>
+        </div>
+        <h3 id="texto-frente">AULA DE SURFE MENSAL (TURMA)</h3>
+      </div>
+    </div>
+
+    <div class="col-1"></div>
+
+
+  </div>
+
+  <!-- <div class="row" id="etapas">
     <div class="col-12">
       <div class="row number" style="margin-top: 5%;">
         <div class="col-2"></div>
         <div class="col-3">
-          <a href="" class="btn btn-primary ativo float-right"
-            style="border-radius: 50px; width: 60px; font-size: 30px;">1</a>
+          <a class="btn btn-primary ativo float-right"
+            style="border-radius: 90px; width: 30px; font-size: 20px;">1</a>
         </div>
         <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
-          <h4>Seleção de serviços</h4>
+          <h5>Seleção de serviços</h5>
         </div>
       </div>
       <div class="row number">
         <div class="col-2"></div>
         <div class="col-3">
-          <a href="" class="btn btn-primary float-right"
-            style="border-radius: 50px; width: 60px; font-size: 30px;">2</a>
+          <a class="btn btn-primary float-right"
+            style="border-radius: 90px; width: 30px; font-size: 20px;">2</a>
         </div>
         <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
-          <h4>Detalhes do serviço</h4>
+          <h5>Detalhes do serviço</h5>
         </div>
       </div>
       <div class="row number">
         <div class="col-2"></div>
         <div class="col-3">
-          <a href="" class="btn btn-primary float-right"
-            style="border-radius: 50px; width: 60px; font-size: 30px;">3</a>
+          <a class="btn btn-primary float-right"
+            style="border-radius: 90px; width: 30px; font-size: 20px;">3</a>
         </div>
         <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
-          <h4>Método de pagamento</h4>
+          <h5>Método de pagamento</h5>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <center id="detalhe_1" class="d-none">
     <br>
@@ -139,29 +265,18 @@
     </div>
   </center>
 
-  <div class="container mt-5" id="card-aulas">
+  <!-- <div class="container mt-5" id="card-aulas">
     <div class="card img-fluid" style="width:500px">
       <button class="btn" style="background-color: transparent; border-color: transparent;"
         onclick="document.getElementById('detalhe_1').classList.remove('d-none'), document.getElementById('etapas').classList.add('d-none'), document.getElementById('card-aulas').classList.add('d-none')">
         <img class="card-img-top" src="{% static 'img/Aula_Surfe_Mensal.jpeg' %}" alt="Card image" style="width:100%">
         <div class="card-img-overlay">
-          <h4 class="float-right"
+          <h5 class="float-right"
             style="margin-top: 230px; color: rgb(206, 206, 206); background-color: rgb(0, 0, 0, 0.6); padding: 5%;">AULA
-            DE SURFE MENSAL (TURMA)</h4>
+            DE SURFE MENSAL (TURMA)</h5>
         </div>
       </button>
-    </div>
-
-    <div class="card img-fluid mt-3" style="width:500px">
-      <button class="btn" style="background-color: transparent; border-color: transparent;">
-        <img class="card-img-top" src="{% static 'img/Treino_Simulador.jpeg' %}" alt="Card image" style="width:100%">
-        <div class="card-img-overlay">
-          <h4 class="float-right"
-            style="margin-top: 230px; color: rgb(206, 206, 206); background-color: rgb(0, 0, 0, 0.6); padding: 5%;">
-            TREINO DE GAIA (SIMULADOR)</h4>
-        </div>
-      </button>
-    </div>
+    </div> -->
 
   </div>
 
@@ -170,11 +285,32 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+<script>
+  var $JQuery2 = jQuery.noConflict()
+  $JQuery2(function () {
+    $JQuery2(".card-surfe").hover(
+      // função que adiciona a classe
+      function () {
+        document.getElementById('texto-frente').classList.add('d-none')
+        document.getElementById('texto-atras').classList.remove('d-none')
+      },
+      // função que remove a classe
+      function () {
+        document.getElementById('texto-frente').classList.remove('d-none')
+        document.getElementById('texto-atras').classList.add('d-none')
+
+      });
+  });
+</script>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
   integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  integrity="sha384-JZR6Spejh5U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 </html>

@@ -22,9 +22,9 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
 
-* {
-  font-family: 'Mulish', sans-serif;
-}
+  * {
+    font-family: 'Mulish', sans-serif;
+  }
 
   .btn-primary.ativo {
     background-color: #d2e7f0;
@@ -70,92 +70,82 @@
   .back-azul-horario {
     background-color: #b5e5fa;
   }
-  
 </style>
 
-<body style="background-color: white;">
-  <img src="{% static 'img/Folhas.png' %}" alt="" style="position: absolute; left: -180px; width: 170%;">
+<body scroll="no" style="overflow: hidden">
+  <img src="{% static 'img/Grupo 1010.png' %}" alt="" style="position: absolute; width: 110%; top: -25%;">
+  <!-- <a href="/"><h4 style="color: rgb(160, 160, 160);"><i class="fa fa-chevron-left"></i> Voltar</h4></a> -->
   <center>
-    <img class="mt-5" src="{% static 'img/LOGO.png' %}" alt="" width="50%">
+    <img class="mt-3" src="{% static 'img/LOGO.png' %}" alt="" width="50%"
+      style="position: absolute; width: 20%; left: 2%;">
   </center>
-  <div class="row" id="etapas">
-    <div class="col-12">
-      <div class="row number" style="margin-top: 5%;">
-        <div class="col-2"></div>
-        <div class="col-3">
-          <a href="" class="btn btn-primary float-right"
-            style="border-radius: 50px; width: 60px; font-size: 30px;">1</a>
-        </div>
-        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
-          <h4>Seleção de serviços</h4>
-        </div>
-      </div>
-      <div class="row number">
-        <div class="col-2"></div>
-        <div class="col-3">
-          <a href="" class="btn btn-primary ativo float-right"
-            style="border-radius: 50px; width: 60px; font-size: 30px;">2</a>
-        </div>
-        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
-          <h4>Detalhes do serviço</h4>
-        </div>
-      </div>
-      <div class="row number">
-        <div class="col-2"></div>
-        <div class="col-3">
-          <a href="" class="btn btn-primary float-right"
-            style="border-radius: 50px; width: 60px; font-size: 30px;">3</a>
-        </div>
-        <div class="col-7" style="margin-top: 2.5%; margin-left: -2%;">
-          <h4>Método de pagamento</h4>
-        </div>
-      </div>
+  <div class="row align-self-center">
+    <div class="col-3" style="margin-left: 20%; margin-top: 2%;">
+      <h5 class="float-right mt-3 ml-3">Seleção de serviços</h5>
+      <a class="btn btn-primary float-right"
+        style="border-radius: 90px; width: 30px; font-size: 20px; height: 50px; padding: 2.7% 10% 0 6%;">1</a>
+    </div>
+    <div class="col-3" style="margin-left: -2%; margin-top: 2%;">
+      <h5 class="float-right mt-3 ml-3">Detalhes do serviço</h5>
+      <a class="btn btn-primary ativo float-right"
+        style="border-radius: 90px; width: 30px; font-size: 20px; height: 50px; padding: 2.7% 10% 0 6%;">2</a>
+    </div>
+    <div class="col-3" style="margin-top: 2%;">
+      <h5 class="float-right mt-3 ml-3">Método de pagamento</h5>
+      <a class="btn btn-primary float-right"
+        style="border-radius: 90px; width: 30px; font-size: 20px; height: 50px; padding: 2.7% 10% 0 6%;">3</a>
     </div>
   </div>
-  <div class="mt-5" id="selecionar_aulas">
-    <form method="POST">
-      {% csrf_token %}
-      <div class="d-none">
-        {{form.Nivel}}
-        {{form.Aula}}
-        {{form.Frequencia}}
-        {{form.Dia_Semana}}
-        {{form.Inicio}}
-      </div>
-      <div class="form-row">
-        <div class="col-12">
-
-          <label for="data_aula2" class="d-none" id="label_data_aula2">Selecione a data da segunda aula</label>
-          <input type="date" class="d-none" name="data_aula2" id="data_aula2" />
-          <label for="data_aula3" class="d-none" id="label_data_aula3">Selecione a data da terceira aula</label>
-          <input type="date" class="d-none" name="data_aula3" id="data_aula3" />
-
-          <div class="" id="select_aulas">
-            <center>
-              <h4 style="color: #7EB3C9;">4- Selecione a data da primeira aula</h4>
-              <div class="col-8">
-                <input type="date" class="form-control mt-3" name="data_aula" id="data_aula" />
-              </div>
-              <div class="col-8">
-                {{form.Dia_De_Aula_Disponivel|as_crispy_field }}
-              </div>
-              <div class="col-5 mt-2">
-                <button type="button" class="btn btn-primary btn-block ativo d-none"
-                  onclick="this.classList.add('d-none'), document.getElementById('btn_submit').classList.remove('d-none')"
-                  id="btn_selecionar" style="font-size: 25px; background-color: #7EB3C9; border-radius: 15px;">
-                  Confirmar</button>
-              </div>
-              <button type="submit" class="btn btn-primary selecionado m-2 d-none" id="btn_submit"
-                style="font-size: 25px; border-radius: 10px;">
-                Avançar para o pagamento <i class="fa fa-arrow-right"></i>
-              </button>
-            </center>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <div class="mt-5" id="selecionar_aulas">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="d-none">
+            {{form.Nivel}}
+            {{form.Aula}}
+            {{form.Frequencia}}
+            {{form.Dia_Semana}}
+            {{form.Inicio}}
           </div>
-        </div>
+          <div class="form-row">
+            <div class="col-12">
+  
+              <label for="data_aula2" class="d-none" id="label_data_aula2">Selecione a data da segunda aula</label>
+              <input type="date" class="d-none" name="data_aula2" id="data_aula2" />
+              <label for="data_aula3" class="d-none" id="label_data_aula3">Selecione a data da terceira aula</label>
+              <input type="date" class="d-none" name="data_aula3" id="data_aula3" />
+  
+              <div class="" id="select_aulas">
+                <center>
+                  <h4 style="color: #7EB3C9;">4- Selecione a data da primeira aula</h4>
+                  <div class="col-8">
+                    <input type="date" class="form-control mt-3" name="data_aula" id="data_aula" />
+                  </div>
+                  <div class="col-8">
+                    {{form.Dia_De_Aula_Disponivel|as_crispy_field }}
+                  </div>
+                  <div class="col-5 mt-2">
+                    <button type="button" class="btn btn-primary btn-block ativo d-none"
+                      onclick="this.classList.add('d-none'), document.getElementById('btn_submit').classList.remove('d-none')"
+                      id="btn_selecionar" style="font-size: 25px; background-color: #7EB3C9; border-radius: 15px;">
+                      Confirmar</button>
+                  </div>
+                  <button type="submit" class="btn btn-primary selecionado m-2 d-none" id="btn_submit"
+                    style="font-size: 25px; border-radius: 10px;">
+                    Avançar para o pagamento <i class="fa fa-arrow-right"></i>
+                  </button>
+                </center>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
+    
   </div>
-  </div>
+
 </body>
 
 <script>
@@ -213,6 +203,7 @@
     //   document.querySelector("#horario_primeira_aula").classList.add('d-none')
     //   document.querySelector("#horario_segunda_aula").classList.remove('d-none')
   };
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
